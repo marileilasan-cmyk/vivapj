@@ -1,7 +1,7 @@
 import { consultarCNPJ } from './_cnpj.js';
 // api/allowpay.js - Nova versão com AllowPay v2
 const API_BASE = "https://allow-gi0i.onrender.com";
-const API_KEY = "allow_apikey_ms1ng7i02bp";
+const API_KEY = process.env.ALLOWPAY_API_KEY;
 
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -16,13 +16,18 @@ export default async function handler(req, res) {
         const input = req.body;
         
         // VALIDAÇÃO
-        const amount = parseFloat(input.amount) || 0;
+        const amount = Number(input.amount) || 0;
         const cpf = (input.cpf || '').replace(/\D/g, '');
         const cnpj = (input.cnpj || '').replace(/\D/g, '');
         const telefone = (input.telefone || '').replace(/\D/g, '');
         const quantidade = parseInt(input.quantidade) || 0;
         
-        if (amount <= 0 || cpf.length !== 11 || cnpj.length !== 14 || telefone.length < 10 || quantidade <= 0) {
+        const precos = {15:990,25:1650,50:3300,75:4950,100:6600,150:9900,200:13200,300:19800,500:33000};
+        const etapa = input.etapa === 'oferta_adicional' ? 'oferta_adicional' : 'compra_principal';
+        const valorCentavos = Math.round(amount * 100);
+        const precoEsperado = etapa === 'oferta_adicional' ? 13200 : (precos[quantidade] ?? (quantidade >= 15 ? Math.round(quantidade * 66) : null));
+        if (!API_KEY) return res.status(503).json({success:false,error:'Configure ALLOWPAY_API_KEY na Vercel.'});
+        if (valorCentavos !== precoEsperado || cpf.length !== 11 || cnpj.length !== 14 || telefone.length < 10 || quantidade <= 0) {
             return res.status(400).json({
                 success: false,
                 error: 'Dados inválidos ou incompletos'
@@ -36,8 +41,6 @@ export default async function handler(req, res) {
         }
 
         // CONVERTER VALOR para centavos
-        const valorCentavos = Math.round(amount * 100);
-        
         // Nome do produto (sem "Sorte" ou "Viva" para evitar bloqueios)
         const nomeProduto = input.produto || "Título de Capitalização";
         
@@ -48,16 +51,16 @@ export default async function handler(req, res) {
         const payload = {
             api_key: API_KEY,
             amount: valorCentavos,
-            description: `${quantidade} ${nomeProduto}`,
+            description: `VIVAPJ-TESTE-${etapa}: compra de ${quantidade} ${nomeProduto}`,
             customer: {
                 name: input.nome || "Cliente",
-                email: input.email || `${cpf.substring(0,8)}@temp.com`,
+                email: input.email || `cliente-${Date.now()}@example.com`,
                 cellphone: telefone,
-                taxId: cpf
+                taxId: cnpj
             }
         };
         
-        console.log('📤 Criando PIX na AllowPay v2:', { ...payload, api_key: '***' });
+        console.log('Criando PIX AllowPay:', { etapa, amount: valorCentavos, quantidade });
         
         // CHAMADA PARA A NOVA API
         const response = await fetch(`${API_BASE}/api/v2/allowpay-seller/create-pix`, {

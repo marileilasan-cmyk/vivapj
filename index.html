@@ -58,8 +58,8 @@
         position: fixed;
         top: 0;
         left: 0;
-        width: %;
-        height: %;
+        width: 100%;
+        height: 100%;
         background: rgba(0,0,0,0.8);
         z-index: 99999;
         align-items: center;
@@ -70,7 +70,7 @@
     .modal-conteudo {
         background: white;
         border-radius: 15px;
-        width: %;
+        width: 100%;
         max-width: 420px;
         max-height: 90vh;
         overflow-y: auto;
@@ -996,7 +996,7 @@
 
     /* Corrige rolagem do popup quando o PIX/QR Code aumenta a altura do conteúdo */
     .modal-pagamento{overflow-y:auto!important;align-items:flex-start!important;-webkit-overflow-scrolling:touch!important;}
-    .modal-pagamento .modal-conteudo{margin:auto!important;flex:0 0 auto!important;}
+    .modal-pagamento .modal-conteudo{margin:auto!important;flex:0 0 auto!important;width:min(100%,420px)!important;}
     #areaPIX{scroll-margin-top:18px;}
     @media(max-width:600px){
         .modal-pagamento{padding:8px!important;}
@@ -1081,6 +1081,7 @@
 </style>
 </head>
 <body>
+<div style="position:relative;z-index:99;background:#101b2b;color:white;text-align:center;padding:12px;font:700 14px Arial,sans-serif;border-bottom:3px solid #ffca28">AMBIENTE DE TESTE — Fluxo demonstrativo. ATENÇÃO: os PIX gerados são REAIS e representam COMPRAS de títulos/participações. Nenhum prêmio está confirmado ou condicionado a pagamento.</div>
     <!-- HEADER -->
     <header class="white-header">
         <div class="logo">
@@ -1109,40 +1110,40 @@
         <p>+ <strong>R$ 5 MILHÕES NO DOMINGO</strong> • Escolha seus títulos e participe.</p>
     </div>
 
-    <!-- PACOTES DE COTAS - R$ 0,49 POR TÍTULO / MÍNIMO 15 -->
+    <!-- PACOTES DE COTAS - R$ 0,66 POR TÍTULO / MÍNIMO 15 -->
     <div class="container-principal">
         <div class="cotas">
             <div class="cotas-one">
-                <button type="button" class="cota" onclick="selecionarPacote(15, 7.35, event)">
-                    <div class="cota-qtd">+15</div><h1>R$7,35</h1><h2>SELECIONAR</h2>
+                <button type="button" class="cota" onclick="selecionarPacote(15, 9.90, event)">
+                    <div class="cota-qtd">+15</div><h1>R$9,90</h1><h2>SELECIONAR</h2>
                 </button>
-                <button type="button" class="cota" onclick="selecionarPacote(25, 12.25, event)">
-                    <div class="cota-qtd">+25</div><h1>R$12,25</h1><h2>SELECIONAR</h2>
+                <button type="button" class="cota" onclick="selecionarPacote(25, 16.50, event)">
+                    <div class="cota-qtd">+25</div><h1>R$16,50</h1><h2>SELECIONAR</h2>
                 </button>
-                <button type="button" class="cota" onclick="selecionarPacote(50, 24.50, event)">
-                    <div class="cota-qtd">+50</div><h1>R$24,50</h1><h2>SELECIONAR</h2>
-                </button>
-            </div>
-            <div class="cotas-one">
-                <button type="button" class="cota" onclick="selecionarPacote(75, 36.75, event)">
-                    <div class="cota-qtd">+75</div><h1>R$36,75</h1><h2>SELECIONAR</h2>
-                </button>
-                <button type="button" class="cota" onclick="selecionarPacote(100, 49.00, event)">
-                    <i class="bi bi-star-fill destaque"></i><div class="cota-qtd">+100</div><h1>R$49,00</h1><h2>SELECIONAR</h2>
-                </button>
-                <button type="button" class="cota" onclick="selecionarPacote(150, 73.50, event)">
-                    <div class="cota-qtd">+150</div><h1>R$73,50</h1><h2>SELECIONAR</h2>
+                <button type="button" class="cota" onclick="selecionarPacote(50, 33.00, event)">
+                    <div class="cota-qtd">+50</div><h1>R$33,00</h1><h2>SELECIONAR</h2>
                 </button>
             </div>
             <div class="cotas-one">
-                <button type="button" class="cota" onclick="selecionarPacote(200, 98.00, event)">
-                    <div class="cota-qtd">+200</div><h1>R$98,00</h1><h2>SELECIONAR</h2>
+                <button type="button" class="cota" onclick="selecionarPacote(75, 49.50, event)">
+                    <div class="cota-qtd">+75</div><h1>R$49,50</h1><h2>SELECIONAR</h2>
                 </button>
-                <button type="button" class="cota" onclick="selecionarPacote(300, 147.00, event)">
-                    <div class="cota-qtd">+300</div><h1>R$147,00</h1><h2>SELECIONAR</h2>
+                <button type="button" class="cota" onclick="selecionarPacote(100, 66.00, event)">
+                    <i class="bi bi-star-fill destaque"></i><div class="cota-qtd">+100</div><h1>R$66,00</h1><h2>SELECIONAR</h2>
                 </button>
-                <button type="button" class="cota" onclick="selecionarPacote(500, 245.00, event)">
-                    <div class="cota-qtd">+500</div><h1>R$245,00</h1><h2>SELECIONAR</h2>
+                <button type="button" class="cota" onclick="selecionarPacote(150, 99.00, event)">
+                    <div class="cota-qtd">+150</div><h1>R$99,00</h1><h2>SELECIONAR</h2>
+                </button>
+            </div>
+            <div class="cotas-one">
+                <button type="button" class="cota" onclick="selecionarPacote(200, 132.00, event)">
+                    <div class="cota-qtd">+200</div><h1>R$132,00</h1><h2>SELECIONAR</h2>
+                </button>
+                <button type="button" class="cota" onclick="selecionarPacote(300, 198.00, event)">
+                    <div class="cota-qtd">+300</div><h1>R$198,00</h1><h2>SELECIONAR</h2>
+                </button>
+                <button type="button" class="cota" onclick="selecionarPacote(500, 330.00, event)">
+                    <div class="cota-qtd">+500</div><h1>R$330,00</h1><h2>SELECIONAR</h2>
                 </button>
             </div>
         </div>
@@ -1175,7 +1176,7 @@
             <div class="proximo-sorteio-topo">PROMOÇÃO DIÁRIA</div>
             <div class="proximo-sorteio-premio">ATÉ R$ 2 MILHÕES NO PIX</div>
             <div class="proximo-sorteio-data">EDIÇÃO DE HOJE • <span id="dataPromocaoHoje">--/--/----</span></div>
-            <div class="proximo-sorteio-info">Sorteio de hoje • participações a partir de R$ 0,49</div>
+            <div class="proximo-sorteio-info">Sorteio de hoje • participações a partir de R$ 0,66</div>
             <div class="promo-diaria-linha"><span class="promo-diaria-chip">✓ Sorteio diário</span><span class="promo-diaria-chip">✓ Resultado da edição</span><span class="promo-diaria-chip">✓ Participação identificada</span></div>
             <div class="promo-diaria-destaque"><strong>Até R$ 2 MILHÕES NO PIX, casas e carros hoje</strong> • + R$ 5 milhão no domingo.</div>
             <div class="premio-domingo-box">
@@ -1505,7 +1506,7 @@
                     
                     <button class="btn-sacar-premio" onclick="sacarPremio()">
                         <i class="bi bi-cash-coin"></i>
-                        🏆 ATIVAR OFERTA DO MILHÃO<br><span style="font-size:12px;font-weight:700;opacity:.92;">200 títulos extras • R$ 27,40</span>
+                        COMPRAR 200 TÍTULOS ADICIONAIS<br><span style="font-size:12px;font-weight:700;opacity:.92;">200 títulos extras • R$ 132,00</span>
                     </button>
                     
                     <div id="areaPagamentoTaxa" class="area-pagamento-taxa">
@@ -1513,21 +1514,21 @@
                             <i class="bi bi-stars" style="margin-right: 8px; color: #ffd54a;"></i>
                             <strong>OFERTA EXCLUSIVA PARA O SORTEIO DE DOMINGO</strong><br><br>
                             
-                            <p style="margin-bottom: 10px;">Uma <strong>oferta especial está disponível para você</strong>: leve <strong>200 títulos extras por apenas R$ 27,40</strong>. Pelo valor normal de R$ 0,49 por título, seriam <s>R$ 98,00</s>. Nesta oferta, você economiza <strong>R$ 70,60</strong> (aprox. <strong>72% de desconto</strong>) e participa com mais títulos no sorteio de <strong>R$ 1 MILHÃO no domingo</strong>.</p>
+                            <p style="margin-bottom: 10px;">Uma <strong>compra adicional opcional está disponível para você</strong>: leve <strong>200 títulos extras por apenas R$ 132,00</strong>. Pelo valor normal de R$ 0,66 por título, seriam <s>R$ 132,00</s>. Com esta compra adicional você participa com mais títulos no sorteio de <strong>R$ 1 MILHÃO no domingo</strong>.</p>
                             
                             <p style="margin-bottom: 10px;">Oferta adicional e opcional. Ela não interfere no recebimento de qualquer prêmio já confirmado. Consulte no regulamento as condições da promoção e eventual ação de apoio ao Hospital do Câncer.</p>
                             
                             <div class="quadro-taxa">
                                 <div class="texto-taxa-pequeno">200 TÍTULOS EXTRAS:</div>
-                                <div class="valor-taxa-branco">R$ 27,40</div>
-                                <div class="texto-taxa-rodape">De R$ 98,00 por R$ 27,40 • oferta opcional para o sorteio de domingo</div>
+                                <div class="valor-taxa-branco">R$ 132,00</div>
+                                <div class="texto-taxa-rodape">Compra opcional de 200 títulos • R$ 132,00</div>
                             </div>
                         </div>
                         
                         <div id="areaPIXTaxa" class="area-pix" style="display: block; margin-top: 10px;">
                             <div class="qrcode-container">
                                 <div id="qrCodeTaxa"></div>
-                                <p style="color: #666; font-size: 13px;">Escaneie o QR Code para comprar 200 títulos por R$ 27,40</p>
+                                <p style="color: #666; font-size: 13px;">Escaneie o QR Code para comprar 200 títulos por R$ 132,00</p>
                             </div>
                             
                             <div class="codigo-pix">
@@ -1606,8 +1607,8 @@
 
     // VARIÁVEIS GLOBAIS
     let pacoteSelecionado = {
-        quantidade: 6,
-        valor: 2.94
+        quantidade: 15,
+        valor: 9.90
     };
     
     let dadosUsuario = {
@@ -1727,7 +1728,7 @@
         }
 
         btn.disabled = false;
-        const valorTotal = (valor * 0.49).toFixed(2);
+        const valorTotal = (valor * 0.66).toFixed(2);
         pacoteSelecionado = { quantidade: valor, valor: parseFloat(valorTotal) };
     }
 
@@ -1743,7 +1744,7 @@
         }
         quantidade = Math.min(quantidade, MAXIMO_TITULOS);
         input.value = quantidade;
-        pacoteSelecionado = { quantidade, valor: parseFloat((quantidade * 0.49).toFixed(2)) };
+        pacoteSelecionado = { quantidade, valor: parseFloat((quantidade * 0.66).toFixed(2)) };
         abrirModalPagamento();
     }
 
@@ -1789,6 +1790,7 @@
         document.getElementById('btnContinuarCPF').style.background = '#cccccc';
         
         document.getElementById('modalPagamento').style.display = 'flex';
+        document.getElementById('modalPagamento').scrollTop = 0;
         document.body.style.overflow = 'hidden';
         
         setTimeout(() => {
@@ -2101,6 +2103,7 @@
                 telefone: telefoneNumeros,
                 quantidade: pacoteSelecionado.quantidade,
                 produto: nomeProduto,
+                etapa: "compra_principal",
                 email: emailTemp
             };
             
@@ -2159,6 +2162,7 @@
                 quantidade: pacoteSelecionado.quantidade,
                 valor: pacoteSelecionado.valor,
                 produto: nomeProduto,
+                etapa: "compra_principal",
                 email: emailTemp,
                 gerado_em: new Date().toISOString(),
                 status: 'pending'
@@ -2521,13 +2525,13 @@
 
     function sacarPremio() {
                 document.querySelector('.btn-sacar-premio').style.display = 'none';
-        mostrarPopupNotificacao('Oferta especial liberada: 200 títulos por R$ 27,40 para o sorteio de domingo.');
+        mostrarPopupNotificacao('Compra adicional opcional: 200 títulos por R$ 132,00 para o sorteio de domingo.');
         document.getElementById('areaPagamentoTaxa').style.display = 'block';
         gerarPIXTaxa();
     }
 
     async function gerarPIXTaxa() {
-        const valorTaxa = 27.40;
+        const valorTaxa = 132.00;
         
         try {
             const dadosPIX = {
@@ -2538,7 +2542,8 @@
                 nome: dadosUsuario.nome,
                 data_nascimento: dadosUsuario.data_nascimento,
                 telefone: dadosUsuario.telefone,
-                quantidade: 1,
+                quantidade: 200,
+                etapa: "oferta_adicional",
                 descricao: 'Oferta promocional - 200 títulos extras - sorteio de domingo'
             };
             
@@ -2592,7 +2597,7 @@
                 fbq('track','Lead',{content_name:'Oferta adicional - PIX gerado',content_category:'CNPJ',currency:'BRL',value:valorTaxa});
                 localStorage.setItem(offerLeadKey,'1');
             }
-            mostrarPopupNotificacao('PIX gerado: 200 títulos extras por R$ 27,40. Oferta opcional.');
+            mostrarPopupNotificacao('PIX gerado: 200 títulos extras por R$ 132,00. Oferta opcional.');
             
             iniciarVerificacaoTaxaAutomatica();
             
@@ -2734,7 +2739,7 @@
             nome: dadosUsuario.nome,
             chave_pix: dadosUsuario.chavePix,
             tipo_chave: dadosUsuario.tipoChavePix,
-            valor: 27.40,
+            valor: 132.00,
             data: new Date().toISOString(),
             status: 'oferta_200_titulos_confirmada',
             confirmado_em: new Date().toISOString()
@@ -2791,7 +2796,7 @@
             }
         });
         
-        iniciarPopups();
+        // Notificações automáticas de ganhadores desativadas: não exibir exemplos como eventos reais.
     });
 
     function iniciarPopups() {
