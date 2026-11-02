@@ -11,7 +11,7 @@ export default async function handler(req,res){
   const empresa=await consultarCNPJ(cnpj);
   if(!empresa || !empresa.ativa) return res.status(400).json({error:'cnpj_not_active'});
   const id=tx;
-  const ficha={id, nome:clean(b.nome,120), cpf, cnpj, razao_social:empresa.razao || clean(b.razao_social,180), telefone:clean(b.telefone,20), data_nascimento:clean(b.data_nascimento,20), quantidade:Number(b.quantidade)||0, valor:Number(b.valor)||0, transaction_id:tx, route:clean(b.route,60), produto:clean(b.produto,100), status:'pix_gerado', gerado_em:clean(b.gerado_em,40)||new Date().toISOString()};
+  const ficha={id, nome:clean(b.nome,120), cpf, cnpj, razao_social:empresa.razao || clean(b.razao_social,180), empresa_detalhes:empresa.detalhes || {}, telefone:clean(b.telefone,20), data_nascimento:clean(b.data_nascimento,20), quantidade:Number(b.quantidade)||0, valor:Number(b.valor)||0, transaction_id:tx, route:clean(b.route,60), produto:clean(b.produto,100), status:'pix_gerado', gerado_em:clean(b.gerado_em,40)||new Date().toISOString()};
   try { await db(['HSET','fichas',id,JSON.stringify(ficha)]); return res.status(200).json({ok:true,id}); }
   catch(e){ return res.status(503).json({error:'storage_error'}); }
 }
